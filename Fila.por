@@ -8,8 +8,9 @@
  * 
  * Descrição:
  * 
- * 	Este exemplo demonstra o uso de RECURSIVIDADE para calcular o fatorial
- * 	de um número. A função chama a si mesma até atingir o caso base (n == 1).
+ * 	Este exemplo implementa uma estrutura de dados do tipo FILA (queue),
+ * 	usando um vetor com controle de início e fim. Permite inserir (inserir)
+ * 	e remover (remover) valores, além de visualizar a fila.
  * 
  * Autor: Daniel Baumann
  * 
@@ -18,23 +19,78 @@
 
 programa
 {
+    inclua biblioteca Util --> u
+
+    // Capacidade da fila
+    inteiro fila[10]
+    inteiro inicio = 0
+    inteiro fim = -1
+    inteiro tamanho = 0
+
     funcao inicio()
     {
-        inteiro numero = 5
-        inteiro resultado = fatorial(numero)
+        // Inserindo elementos
+        para (inteiro i = 0; i < 5; i++)
+        {
+            inserir(u.sorteia(1, 100))
+        }
 
-        escreva("Fatorial de ", numero, " é: ", resultado, "\n")
+        escreva("\nFila após inserir 5 elementos:\n")
+        mostrarFila()
+
+        // Removendo dois elementos
+        escreva("\nRemovendo dois elementos...\n")
+        remover()
+        remover()
+
+        escreva("\nFila após remover 2 elementos:\n")
+        mostrarFila()
     }
 
-    funcao inteiro fatorial(inteiro n)
+    funcao inserir(inteiro valor)
     {
-        se (n == 1 ou n == 0)
+        se (tamanho < 10)
         {
-            retorne 1
+            fim = (fim + 1) % 10
+            fila[fim] = valor
+            tamanho++
+            escreva("Inserido: ", valor, "\n")
         }
         senao
         {
-            retorne n * fatorial(n - 1)
+            escreva("Erro: Fila cheia\n")
+        }
+    }
+
+    funcao remover()
+    {
+        se (tamanho > 0)
+        {
+            escreva("Removido: ", fila[inicio], "\n")
+            inicio = (inicio + 1) % 10
+            tamanho--
+        }
+        senao
+        {
+            escreva("Erro: Fila vazia\n")
+        }
+    }
+
+    funcao mostrarFila()
+    {
+        se (tamanho == 0)
+        {
+            escreva("Fila vazia\n")
+        }
+        senao
+        {
+            inteiro pos = inicio
+            para (inteiro i = 0; i < tamanho; i++)
+            {
+                escreva(fila[pos], " ")
+                pos = (pos + 1) % 10
+            }
+            escreva("\n")
         }
     }
 }
