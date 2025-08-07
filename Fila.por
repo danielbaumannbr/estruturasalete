@@ -1,47 +1,40 @@
-//Fila 
-programa {
-    //Variaveis globais
-    cadeia fila[10]
-    inteiro inicio=0,fim=-1,tamanho=0
-  funcao inicio() {
-    inserir("Eloísa")
-    inserir("Lincoln")
-    inserir("Elton")
-    inserir("Juarez")
-    mostraFila()
-    remover()
-    remover()
-    inserir("Janete")
-    mostraFila()
-  }
-  //Insere pessoas na fila
-  funcao inserir(cadeia nome){
-    se(tamanho<10){
-      fim=(fim+1)%10
-      fila[fim]=nome
-      tamanho++
-      escreva(nome," foi inserido na fila.\n")
-    }senao{
-      escreva("Está lotado!\n")
+/* CLIQUE NO SINAL DE "+", À ESQUERDA, PARA EXIBIR A DESCRIÇÃO DO EXEMPLO
+ *  
+ * Copyright (C) 2025 - SENAI SC 
+ * 
+ * Este arquivo de código-fonte é livre para utilização, cópia e/ou modificação,
+ * desde que este cabeçalho, contendo os direitos autorais e a descrição do programa, 
+ * seja mantido.
+ * 
+ * Descrição:
+ * 
+ * 	Este exemplo demonstra o uso de RECURSIVIDADE para calcular o fatorial
+ * 	de um número. A função chama a si mesma até atingir o caso base (n == 1).
+ * 
+ * Autor: Daniel Baumann
+ * 
+ * Data: 30/07/2025
+ */
+
+programa
+{
+    funcao inicio()
+    {
+        inteiro numero = 5
+        inteiro resultado = fatorial(numero)
+
+        escreva("Fatorial de ", numero, " é: ", resultado, "\n")
     }
-  }
-  //Remove pessoa da fila
-  funcao remover(){
-    se(tamanho>0){
-      escreva("Atendendo ",fila[inicio],"\n")
-      inicio=(inicio+1)%10
-      tamanho--
-    }senao{
-      escreva("A fila está vazia!\n")
+
+    funcao inteiro fatorial(inteiro n)
+    {
+        se (n == 1 ou n == 0)
+        {
+            retorne 1
+        }
+        senao
+        {
+            retorne n * fatorial(n - 1)
+        }
     }
-  }
-  funcao mostraFila(){
-    //Variavel local
-    inteiro posicao=inicio
-    para(inteiro i=0;i<tamanho;i++){
-      escreva(fila[posicao]," ")
-      posicao=(posicao+1)%10
-    }
-    escreva("\n")
-  }
 }
